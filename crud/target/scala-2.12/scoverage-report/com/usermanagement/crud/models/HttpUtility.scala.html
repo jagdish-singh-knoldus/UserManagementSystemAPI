@@ -1,0 +1,302 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          com/usermanagement/crud/models/HttpUtility.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>// Copyright (C) 2011-2012 the original author or authors.
+</span>2 <span style=''>// See the LICENCE.txt file distributed with this work for additional
+</span>3 <span style=''>// information regarding copyright ownership.
+</span>4 <span style=''>//
+</span>5 <span style=''>// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+</span>6 <span style=''>// you may not use this file except in compliance with the License.
+</span>7 <span style=''>// You may obtain a copy of the License at
+</span>8 <span style=''>//
+</span>9 <span style=''>// http://www.apache.org/licenses/LICENSE-2.0
+</span>10 <span style=''>//
+</span>11 <span style=''>// Unless required by applicable law or agreed to in writing, software
+</span>12 <span style=''>// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+</span>13 <span style=''>// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+</span>14 <span style=''>// See the License for the specific language governing permissions and
+</span>15 <span style=''>// limitations under the License.
+</span>16 <span style=''>
+</span>17 <span style=''>package com.usermanagement.crud.models
+</span>18 <span style=''>
+</span>19 <span style=''>import akka.http.scaladsl.model.{ContentTypes, HttpEntity, HttpResponse}
+</span>20 <span style=''>import akka.http.scaladsl.server.{Directives, RejectionHandler, Route}
+</span>21 <span style=''>import com.typesafe.scalalogging.LazyLogging
+</span>22 <span style=''>
+</span>23 <span style=''>trait HttpUtility extends Directives with LazyLogging {
+</span>24 <span style=''>
+</span>25 <span style=''>  val rejectionHandler: RejectionHandler = </span><span style='background: #F0ADAD'>HandleRejection.newHandler()</span><span style=''>
+</span>26 <span style=''>
+</span>27 <span style=''>  def logDuration(inner: Route): Route = { ctx =&gt;
+</span>28 <span style=''>    val start = </span><span style='background: #F0ADAD'>System.currentTimeMillis()</span><span style=''>
+</span>29 <span style=''>    /**
+</span>30 <span style=''>      * handling rejections here so that we get proper status codes
+</span>31 <span style=''>      */
+</span>32 <span style=''>    val innerRejectionsHandled = </span><span style='background: #F0ADAD'>handleRejections(rejectionHandler)(inner)</span><span style=''>
+</span>33 <span style=''>    </span><span style='background: #F0ADAD'>mapResponse { resp =&gt;
+</span>34 <span style=''></span><span style='background: #F0ADAD'>      val d = System.currentTimeMillis() - start
+</span>35 <span style=''></span><span style='background: #F0ADAD'>      logger.info(s&quot;[${resp.status
+</span>36 <span style=''></span><span style='background: #F0ADAD'>        .intValue()}] ${ctx.request.method.name} ${ctx.request.uri} took: ${d}ms&quot;)
+</span>37 <span style=''></span><span style='background: #F0ADAD'>      resp
+</span>38 <span style=''></span><span style='background: #F0ADAD'>    }(innerRejectionsHandled)(ctx)</span><span style=''>
+</span>39 <span style=''>  }
+</span>40 <span style=''>
+</span>41 <span style=''>  def handleResponseWithEntity(response: String): HttpResponse = {
+</span>42 <span style=''>    </span><span style='background: #F0ADAD'>HttpResponse(entity = HttpEntity(ContentTypes.`application/json`, response))</span><span style=''>
+</span>43 <span style=''>  }
+</span>44 <span style=''>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          25
+        </td>
+        <td>
+          207
+        </td>
+        <td>
+          1060
+          -
+          1088
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.usermanagement.crud.models.HandleRejection.newHandler
+        </td>
+        <td style="background: #F0ADAD">
+          HandleRejection.newHandler()
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          208
+        </td>
+        <td>
+          1156
+          -
+          1182
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.System.currentTimeMillis
+        </td>
+        <td style="background: #F0ADAD">
+          java.lang.System.currentTimeMillis()
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          209
+        </td>
+        <td>
+          1301
+          -
+          1342
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Function1.apply
+        </td>
+        <td style="background: #F0ADAD">
+          server.this.Directive.addByNameNullaryApply(HttpUtility.this.handleRejections(HttpUtility.this.rejectionHandler)).apply(inner)
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          210
+        </td>
+        <td>
+          1347
+          -
+          1581
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Function1.apply
+        </td>
+        <td style="background: #F0ADAD">
+          server.this.Directive.addByNameNullaryApply(HttpUtility.this.mapResponse(((resp: akka.http.scaladsl.model.HttpResponse) =&gt; {
+  val d: Long = java.lang.System.currentTimeMillis().-(start);
+  (if (HttpUtility.this.logger.underlying.isInfoEnabled())
+    HttpUtility.this.logger.underlying.info(&quot;[{}] {} {} took: {}ms&quot;, resp.status.intValue().asInstanceOf[AnyRef], ctx.request.method.name(), ctx.request.uri, d.asInstanceOf[AnyRef])
+  else
+    (): Unit);
+  resp
+}))).apply(innerRejectionsHandled).apply(ctx)
+        </td>
+      </tr><tr>
+        <td>
+          42
+        </td>
+        <td>
+          211
+        </td>
+        <td>
+          1691
+          -
+          1722
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          akka.http.scaladsl.model.ContentTypes.application/json
+        </td>
+        <td style="background: #F0ADAD">
+          akka.http.scaladsl.model.ContentTypes.application/json
+        </td>
+      </tr><tr>
+        <td>
+          42
+        </td>
+        <td>
+          214
+        </td>
+        <td>
+          1658
+          -
+          1658
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          akka.http.scaladsl.model.HttpResponse.apply$default$2
+        </td>
+        <td style="background: #F0ADAD">
+          akka.http.scaladsl.model.HttpResponse.apply$default$2
+        </td>
+      </tr><tr>
+        <td>
+          42
+        </td>
+        <td>
+          216
+        </td>
+        <td>
+          1658
+          -
+          1734
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          akka.http.scaladsl.model.HttpResponse.apply
+        </td>
+        <td style="background: #F0ADAD">
+          akka.http.scaladsl.model.HttpResponse.apply(x$2, x$3, x$1, x$4)
+        </td>
+      </tr><tr>
+        <td>
+          42
+        </td>
+        <td>
+          213
+        </td>
+        <td>
+          1658
+          -
+          1658
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          akka.http.scaladsl.model.HttpResponse.apply$default$1
+        </td>
+        <td style="background: #F0ADAD">
+          akka.http.scaladsl.model.HttpResponse.apply$default$1
+        </td>
+      </tr><tr>
+        <td>
+          42
+        </td>
+        <td>
+          212
+        </td>
+        <td>
+          1680
+          -
+          1733
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          akka.http.scaladsl.model.HttpEntity.apply
+        </td>
+        <td style="background: #F0ADAD">
+          akka.http.scaladsl.model.HttpEntity.apply(akka.http.scaladsl.model.ContentTypes.application/json, response)
+        </td>
+      </tr><tr>
+        <td>
+          42
+        </td>
+        <td>
+          215
+        </td>
+        <td>
+          1658
+          -
+          1658
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          akka.http.scaladsl.model.HttpResponse.apply$default$4
+        </td>
+        <td style="background: #F0ADAD">
+          akka.http.scaladsl.model.HttpResponse.apply$default$4
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>
