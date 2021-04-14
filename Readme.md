@@ -1,4 +1,4 @@
-##User Management System
+## User Management System
 
 This project is used to create, get, update, and delete user details in MySQL database using Scala programming Language.
 
@@ -13,7 +13,7 @@ This project is used to create, get, update, and delete user details in MySQL da
 
 ## Commands
 
-## docker
+### docker
 
 This command set up MySQL server on system using docker file.
 Enter the project folder and run the  command:
@@ -28,20 +28,20 @@ schema: user
 port: 3306
 ````
 
-###clean
+### clean
 
 This command cleans the sbt project by deleting the target directory. The command output relevant messages.
 ````
 sbt clean
 ````
 
-###compile
+### compile
 
 This command compiles the scala source classes of the sbt project.
 ````
 sbt compile
 ````
-###run
+### run
 
 Enter the project folder and type project module name along with the sbt run command:
 ````
@@ -75,11 +75,11 @@ More details about project libraraies (e.g. version etc..) can be found in files
 **plugins.sbt**
 
 
-##Routes
+## Routes
 
 ######Note: postman json file is added in the directory. 
 
-###create user
+### create user
 
 This route stores user details in the database
 
@@ -95,7 +95,7 @@ data-format: body -> raw (JSON)
 }
 ````
 
-###list users
+### list users
 
 This route displays all the users from the database
 
@@ -104,7 +104,7 @@ This route displays all the users from the database
 route (GET): http://localhost:8003/user/get-all-users
 ````
 
-###update admin username
+### update admin username
 
 This route updates the username of admin in the database
 
@@ -120,7 +120,7 @@ data-format: body -> raw (JSON)
 }
 ````
 
-###delete customer
+### delete customer
 
 This route deletes the customer details from the database
 
