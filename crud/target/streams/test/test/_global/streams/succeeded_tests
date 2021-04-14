@@ -1,7 +1,0 @@
-#Successful Tests
-#Thu Apr 15 00:24:25 IST 2021
-com.usermanagement.crud.actor.UserActorSpec=1618426465134
-com.usermanagement.crud.servicehandler.UserRestServiceHandlerSpec=1618426461052
-com.usermanagement.crud.models.ResponseFormatSpec=1618426458266
-com.usermanagement.crud.routes.UserRestServiceSpec=1618426460758
-com.usermanagement.crud.dao.UserDAOSpec=1618426464746

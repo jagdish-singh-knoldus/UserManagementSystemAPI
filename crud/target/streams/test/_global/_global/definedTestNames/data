@@ -1,1 +1,0 @@
-["com.usermanagement.crud.models.ResponseFormatSpec","com.usermanagement.crud.routes.UserRestServiceSpec","com.usermanagement.crud.servicehandler.UserRestServiceHandlerSpec","com.usermanagement.crud.dao.UserDAOSpec","com.usermanagement.crud.actor.UserActorSpec"]
